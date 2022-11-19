@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchAll } from 'components/redux/operations';
+import { fetchAll } from 'components/redux/contacts/operations';
 import { Layout } from './Layout/Layout';
 
 const Home = lazy(() => import('pages/Home'));

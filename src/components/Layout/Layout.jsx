@@ -1,23 +1,13 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Oval } from 'react-loader-spinner';
+import { Navigation } from 'components/Navigation/Navigation';
 
 export const Layout = () => {
   return (
     <div>
       <header>
-        <nav>
-          <div>
-            <NavLink to="/" end>
-              Home
-            </NavLink>
-            <NavLink to="/contacts">Contacts</NavLink>
-          </div>
-          <div>
-            <NavLink to="register">Register</NavLink>
-            <NavLink to="login">Login</NavLink>
-          </div>
-        </nav>
+        <Navigation />
       </header>
       <main>
         <Suspense

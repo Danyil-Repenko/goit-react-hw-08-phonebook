@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'components/redux/selectors';
+import { selectContacts } from 'components/redux/contacts/selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { addContact } from 'components/redux/operations';
+import { addContact } from 'components/redux/contacts/operations';
 import {
   Form,
   InputWrapper,
   Label,
   Input,
   SubmitBtn,
-} from './ContactForm.styled';
+} from './CreateContactForm.styled';
 
-export const ContactForm = () => {
+export const CreateContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
