@@ -16,7 +16,6 @@ export const registration = createAsyncThunk(
         try {
             const response = await axios.post(`${baseURL}/users/signup`, information)
             setAuthHeader(response.data.token)
-            console.log(response.data)
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message)
@@ -25,9 +24,9 @@ export const registration = createAsyncThunk(
 )
 
 export const logingIn = createAsyncThunk(
-    'auth/logingIn', async (information, thunkAPI) => {
+    'auth/logingIn', async (info, thunkAPI) => {
         try {
-            const response = await axios.post(`${baseURL}/users/login`, information)
+            const response = await axios.post(`${baseURL}/users/login`, info)
             setAuthHeader(response.data.token)
             return response.data;
         } catch (error) {
