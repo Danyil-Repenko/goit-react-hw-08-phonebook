@@ -1,10 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { StyledLink } from 'components/commonComponents.styled';
 
 export const AuthMenu = () => {
   return (
     <div>
-      <NavLink to="register">Register</NavLink>
-      <NavLink to="login">Login</NavLink>
+      <StyledLink to="register">Register</StyledLink>
+      <StyledLink to="login">Login</StyledLink>
     </div>
   );
 };
