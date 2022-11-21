@@ -33,6 +33,7 @@ export const LoginForm = () => {
           width="300px"
           id="password"
           type="password"
+          placeholder="surly you know your password"
           focusBorderColor="black"
           borderRadius="0"
         />
