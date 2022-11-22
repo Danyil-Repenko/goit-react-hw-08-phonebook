@@ -3,8 +3,7 @@ import { AuthMenu } from 'components/AuthMenu/AuthMenu';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'components/redux/auth/selecors';
-import { Nav } from './Navigation.styled';
-import { StyledLink } from 'components/commonComponents.styled';
+import { Nav, StyledLink } from './Navigation.styled';
 
 export const Navigation = () => {
   const loggedIn = useSelector(selectToken);

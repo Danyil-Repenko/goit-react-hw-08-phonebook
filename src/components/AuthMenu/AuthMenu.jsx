@@ -1,4 +1,4 @@
-import { StyledLink } from 'components/commonComponents.styled';
+import { StyledLink } from 'components/Navigation/Navigation.styled';
 
 export const AuthMenu = () => {
   return (

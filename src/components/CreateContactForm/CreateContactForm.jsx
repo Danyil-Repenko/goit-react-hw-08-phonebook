@@ -1,59 +1,102 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'components/redux/contacts/selectors';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { addContact } from 'components/redux/contacts/operations';
 import {
-  Form,
-  InputWrapper,
-  Label,
+  Center,
+  FormControl,
+  FormLabel,
   Input,
-  SubmitBtn,
-} from './CreateContactForm.styled';
+  FormErrorMessage,
+  Button,
+} from '@chakra-ui/react';
+import { Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 export const CreateContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
-  const addNewContact = e => {
-    e.preventDefault();
+  const duplicateNameCheck = (array, nameToCheck) => {
+    const nameSameness = array.find(contact => contact.name === nameToCheck);
 
-    const name = e.target.elements.name.value;
-    const number = e.target.elements.number.value;
-    const nameSameness = contacts.find(contact => contact.name === name);
-
-    if (nameSameness) {
-      Notify.info(`${name} is already in contacts`);
-      return;
-    } else {
-      dispatch(addContact({ name, number }));
-    }
-
-    e.target.reset();
+    return nameSameness ? false : true;
   };
 
   return (
-    <Form onSubmit={addNewContact}>
-      <InputWrapper>
-        <Label>Name</Label>
-        <Input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </InputWrapper>
-      <InputWrapper>
-        <Label>Number</Label>
-        <Input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </InputWrapper>
-      <SubmitBtn type="submit">Add contact</SubmitBtn>
-    </Form>
+    <Center w="100%" p={4}>
+      <Formik
+        initialValues={{ name: '', number: '' }}
+        validationSchema={Yup.object({
+          name: Yup.string()
+            .required('Required')
+            .test('Unique', 'Name needs te be unique', value => {
+              return duplicateNameCheck(contacts, value);
+            }),
+          number: Yup.string().required('Required'),
+        })}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            dispatch(addContact(values));
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        <Form>
+          <Field name="name">
+            {({ field, form }) => (
+              <FormControl isInvalid={form.errors.name && form.touched.name}>
+                <FormLabel mb={2}>Name</FormLabel>
+                <Input
+                  {...field}
+                  width="300px"
+                  type="text"
+                  focusBorderColor="black"
+                  borderRadius="0"
+                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                  title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                />
+                <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+          <Field name="number">
+            {({ field, form }) => (
+              <FormControl
+                isInvalid={form.errors.number && form.touched.number}
+              >
+                <FormLabel mt={3} mb={2}>
+                  Number
+                </FormLabel>
+                <Input
+                  {...field}
+                  width="300px"
+                  type="tel"
+                  focusBorderColor="black"
+                  borderRadius="0"
+                  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                />
+                <FormErrorMessage>{form.errors.number}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+          <Button
+            mt="30px"
+            borderRadius="0"
+            bg="transparent"
+            size="sm"
+            border="1px solid #000000"
+            _hover={{ bg: '#606060', color: 'white' }}
+            _active={{
+              bg: '#000000',
+              transform: 'scale(0.98)',
+            }}
+            type="submit"
+          >
+            Add Contact
+          </Button>
+        </Form>
+      </Formik>
+    </Center>
   );
 };

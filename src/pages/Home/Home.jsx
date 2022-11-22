@@ -19,9 +19,10 @@ export default function Home() {
         </WelcomingText>
       ) : (
         <WelcomingText>
-          /Welcome to Phonebook. We provide, surprise-surprise, a phonebook for
-          you to neatly keep all your contacts. If you're new to the service,
-          then register. Already, familiar with us? Then login and proceed!/
+          /Welcome to Phonebook. We provide, <i>surprise-surprise</i>, a
+          phonebook for you to neatly keep all your contacts. If you're new to
+          the service, then register. Already, familiar with us? Then login and
+          proceed!/
         </WelcomingText>
       )}
     </Container>
