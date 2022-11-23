@@ -1,14 +1,15 @@
 import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import { selectToken, selectUser } from 'components/redux/auth/selecors';
-import { WelcomingText, Container } from './Home.styled';
+import { WelcomingText } from './Home.styled';
+import { Center } from '@chakra-ui/react';
 
 export default function Home() {
   const loggedIn = useSelector(selectToken);
   const { name } = useSelector(selectUser);
 
   return (
-    <Container>
+    <Center w="100%" h="calc(100vh - 200px)" m="auto 0">
       <Helmet>
         <title>Phonebook</title>
       </Helmet>
@@ -25,6 +26,6 @@ export default function Home() {
           proceed!/
         </WelcomingText>
       )}
-    </Container>
+    </Center>
   );
 }

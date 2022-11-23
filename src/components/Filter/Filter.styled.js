@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 export const InputWrapper = styled.div`
 display: flex;
-flex-wrap: wrap;
-margin-bottom: 10px;
-width: 250px;`
+margin-bottom: 20px;`
 
 export const Label = styled.label`
 width: 100%;
@@ -15,9 +13,9 @@ width: 100%;
 `
 
 export const Input = styled.input`
-  width: 100%;
+  width: 250px;
   padding: 9px 15px;
-  margin: 8px 0;
+  margin-left: 10px;
   display: inline-block;
   border: 1px solid #cccccc;
   box-sizing: border-box;
