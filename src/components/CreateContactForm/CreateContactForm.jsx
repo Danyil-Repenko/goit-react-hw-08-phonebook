@@ -25,7 +25,6 @@ export const CreateContactForm = () => {
 
   return (
     <Formik
-      border="3px solid #000000"
       initialValues={{ name: '', number: '' }}
       validationSchema={Yup.object({
         name: Yup.string()
@@ -52,7 +51,10 @@ export const CreateContactForm = () => {
           boxShadow="8px 8px 3px 2px #767676"
         >
           <Form>
-            <Flex justify="space-between">
+            <Flex
+              justify={[null, null, null, 'space-between']}
+              wrap={['wrap', 'wrap', 'wrap', 'no-wrap']}
+            >
               <Field name="name" width="300px">
                 {({ field, form }) => (
                   <FormControl

@@ -6,6 +6,7 @@ import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { refreshUser } from './redux/auth/operations';
 import { selectIsRefreshing } from './redux/auth/selecors';
+import { Loader } from 'components/loader';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Contacts = lazy(() => import('pages/Contacts'));
@@ -21,7 +22,7 @@ export function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing...</b>
+    <Loader />
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

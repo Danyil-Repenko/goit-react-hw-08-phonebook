@@ -3,11 +3,14 @@ import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
 import { CreateContactForm } from 'components/CreateContactForm/CreateContactForm';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box } from '@chakra-ui/react';
 import { fetchAll } from 'components/redux/contacts/operations';
+import { selectLoadingState } from 'components/redux/contacts/selectors';
+import { Loader } from 'components/loader';
 
 export default function Contacts() {
+  const showloader = useSelector(selectLoadingState);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAll());
@@ -20,7 +23,7 @@ export default function Contacts() {
       </Helmet>
       <CreateContactForm />
       <Filter />
-      <ContactList />
+      {showloader ? <Loader /> : <ContactList />}
     </Box>
   );
 }

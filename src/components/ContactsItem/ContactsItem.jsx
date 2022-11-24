@@ -1,31 +1,23 @@
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'components/redux/contacts/operations';
 import PropTypes from 'prop-types';
-import { Button } from '@chakra-ui/react';
+import { useButton } from 'hooks/useButton';
 
 export const ContactItem = ({ contact: { name, number, id } }) => {
   const dispatch = useDispatch();
   const removeContact = () => dispatch(deleteContact(id));
+  const buttonArgs = {
+    handleClick: removeContact,
+    label: 'Delete',
+    margin: '0 0 0 10px',
+    size: 'xs',
+  };
+  const button = useButton(buttonArgs);
 
   return (
     <li style={{ margin: '0 0 10px 20px ' }}>
       {name}: {number}
-      <Button
-        ml={2}
-        borderRadius="0"
-        bg="transparent"
-        size="xs"
-        border="1px solid #000000"
-        _hover={{ bg: '#606060', color: 'white' }}
-        _active={{
-          bg: '#000000',
-          transform: 'scale(0.98)',
-        }}
-        type="button"
-        onClick={removeContact}
-      >
-        Delete
-      </Button>
+      {button}
     </li>
   );
 };

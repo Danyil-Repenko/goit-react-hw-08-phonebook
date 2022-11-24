@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
-import { Oval } from 'react-loader-spinner';
 import { Navigation } from 'components/Navigation/Navigation';
+import { Loader } from 'components/loader';
 
 export const Layout = () => {
   return (
@@ -10,22 +10,7 @@ export const Layout = () => {
         <Navigation />
       </header>
       <main>
-        <Suspense
-          fallback={
-            <Oval
-              height={80}
-              width={80}
-              color="#1e1e1f"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel="oval-loading"
-              secondaryColor="#646464"
-              strokeWidth={2}
-              strokeWidthSecondary={2}
-            />
-          }
-        >
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </main>

@@ -9,7 +9,14 @@ export default function Home() {
   const { name } = useSelector(selectUser);
 
   return (
-    <Center w="100%" h="calc(100vh - 200px)" m="auto 0">
+    <Center
+      w="100%"
+      pos="absolute"
+      top="64px"
+      bottom="0"
+      m="auto 0"
+      bgGradient="linear(to-r, rgba(190,81,26,1) 2%, rgba(28,93,186,1) 52%, rgba(172,180,37,1) 98%)"
+    >
       <Helmet>
         <title>Phonebook</title>
       </Helmet>
@@ -22,8 +29,8 @@ export default function Home() {
         <WelcomingText>
           /Welcome to Phonebook. We provide, <i>surprise-surprise</i>, a
           phonebook for you to neatly keep all your contacts. If you're new to
-          the service, then register. Already, familiar with us? Then login and
-          proceed!/
+          the service, then <b>register</b>. Already, familiar with us? Then
+          <b> login</b> and proceed!/
         </WelcomingText>
       )}
     </Center>

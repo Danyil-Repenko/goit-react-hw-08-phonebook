@@ -8,11 +8,13 @@ import { Provider } from "react-redux";
 import { persistor } from 'components/redux/store';
 import { store } from 'components/redux/store';
 import { App } from 'components/App';
+import { theme } from 'components/theme'
+import "@fontsource/akshar/500.css"
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <BrowserRouter>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
