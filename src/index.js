@@ -15,7 +15,7 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter basename='/goit-react-hw-08-phonebook/'>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <HelmetProvider>
