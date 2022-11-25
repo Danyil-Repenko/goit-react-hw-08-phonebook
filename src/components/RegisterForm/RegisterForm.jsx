@@ -1,5 +1,5 @@
 import { registration } from 'components/redux/auth/operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Center,
   FormControl,
@@ -10,9 +10,16 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { Notify } from 'notiflix';
+import { selectError } from 'components/redux/auth/selecors';
 
 export const RegisterForm = () => {
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
+
+  if (error) {
+    Notify.failure('Something went wrong. Try again, please.');
+  }
 
   return (
     <Center w="100%" p={4}>

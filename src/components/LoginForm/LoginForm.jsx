@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logingIn } from 'components/redux/auth/operations';
 import {
   Center,
@@ -10,9 +10,16 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { selectError } from 'components/redux/auth/selecors';
+import { Notify } from 'notiflix';
 
 export const LoginForm = () => {
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
+
+  if (error) {
+    Notify.failure('The email or the password is incorrect');
+  }
 
   return (
     <Center w="100%" p={4}>

@@ -3,12 +3,12 @@ import { selectContacts } from 'components/redux/contacts/selectors';
 import { addContact } from 'components/redux/contacts/operations';
 import {
   Box,
+  Flex,
   FormControl,
   FormLabel,
   Input,
   FormErrorMessage,
   Button,
-  Flex,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -55,7 +55,7 @@ export const CreateContactForm = () => {
               justify={[null, null, null, 'space-between']}
               wrap={['wrap', 'wrap', 'wrap', 'no-wrap']}
             >
-              <Field name="name" width="300px">
+              <Field name="name">
                 {({ field, form }) => (
                   <FormControl
                     width="auto"
@@ -88,7 +88,7 @@ export const CreateContactForm = () => {
                       type="tel"
                       focusBorderColor="black"
                       borderRadius="0"
-                      pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                      pattern="/+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}"
                       title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     />
                     <FormErrorMessage>{form.errors.number}</FormErrorMessage>
@@ -97,7 +97,7 @@ export const CreateContactForm = () => {
               </Field>
             </Flex>
             <Button
-              mt="20px"
+              mt="30px"
               borderRadius="0"
               bg="transparent"
               size="sm"

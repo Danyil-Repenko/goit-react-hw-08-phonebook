@@ -7,8 +7,6 @@ export const useButton = params => {
     label,
     margin = '0',
     size = 'sm',
-    disabled = false,
-    isLoading = false,
   } = params;
 
   return (
@@ -23,8 +21,6 @@ export const useButton = params => {
         bg: '#000000',
         transform: 'scale(0.98)',
       }}
-      disabled={disabled}
-      isLoading={isLoading}
       type={type}
       onClick={handleClick}
     >

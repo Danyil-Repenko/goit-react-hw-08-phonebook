@@ -1,4 +1,3 @@
-// import { Tabs, TabList, Tab } from '@chakra-ui/react';
 import { AuthMenu } from 'components/AuthMenu/AuthMenu';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
