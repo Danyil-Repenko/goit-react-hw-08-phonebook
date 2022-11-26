@@ -29,7 +29,7 @@ export default function Home() {
         <WelcomingText>
           /Welcome to Phonebook. We provide, <i>surprise-surprise</i>, a
           phonebook for you to neatly keep all your contacts. If you're new to
-          the service, then <b>register</b>. Already, familiar with us? Then
+          the service, then <b>register</b>. Already familiar with us? Then
           <b> login</b> and proceed!/
         </WelcomingText>
       )}

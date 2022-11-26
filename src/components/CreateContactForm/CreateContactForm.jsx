@@ -23,16 +23,24 @@ export const CreateContactForm = () => {
     return nameSameness ? false : true;
   };
 
+  const namePatern =
+    "[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
+  const phonePatern =
+    '^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$';
+
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
       validationSchema={Yup.object({
         name: Yup.string()
           .required('Required')
+          .matches(namePatern, 'Wrong name patern')
           .test('Unique', 'Name needs te be unique', value => {
             return duplicateNameCheck(contacts, value);
           }),
-        number: Yup.string().required('Required'),
+        number: Yup.string()
+          .matches(phonePatern, 'Wrong phone patern')
+          .required('Required'),
       })}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         setTimeout(() => {
@@ -68,7 +76,6 @@ export const CreateContactForm = () => {
                       type="text"
                       focusBorderColor="black"
                       borderRadius="0"
-                      pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                       title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                     />
                     <FormErrorMessage>{form.errors.name}</FormErrorMessage>
@@ -88,7 +95,6 @@ export const CreateContactForm = () => {
                       type="tel"
                       focusBorderColor="black"
                       borderRadius="0"
-                      pattern="/+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}/"
                       title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     />
                     <FormErrorMessage>{form.errors.number}</FormErrorMessage>
