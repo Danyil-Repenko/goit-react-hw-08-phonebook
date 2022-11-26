@@ -12,6 +12,7 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { selectError } from 'components/redux/auth/selecors';
 import { Notify } from 'notiflix';
+import { stopError } from 'components/redux/auth/authSlice';
 
 export const LoginForm = () => {
   const error = useSelector(selectError);
@@ -19,6 +20,7 @@ export const LoginForm = () => {
 
   if (error) {
     Notify.failure('The email or the password is incorrect');
+    dispatch(stopError());
   }
 
   return (

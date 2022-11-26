@@ -12,6 +12,7 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { Notify } from 'notiflix';
 import { selectError } from 'components/redux/auth/selecors';
+import { stopError } from 'components/redux/auth/authSlice';
 
 export const RegisterForm = () => {
   const error = useSelector(selectError);
@@ -19,6 +20,7 @@ export const RegisterForm = () => {
 
   if (error) {
     Notify.failure('Something went wrong. Try again, please.');
+    dispatch(stopError());
   }
 
   return (
