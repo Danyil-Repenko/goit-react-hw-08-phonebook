@@ -20,7 +20,7 @@ export const CreateContactForm = () => {
   const duplicateNameCheck = (array, nameToCheck) => {
     const nameSameness = array.find(contact => contact.name === nameToCheck);
 
-    return nameSameness ? false : true;
+    return !nameSameness;
   };
 
   const namePatern =
